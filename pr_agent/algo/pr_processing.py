@@ -344,9 +344,10 @@ async def retry_with_fallback_models(f: Callable, model_type: ModelType = ModelT
 
 def _get_all_models(model_type: ModelType = ModelType.REGULAR) -> List[str]:
     if model_type == ModelType.TURBO:
-        model = get_settings().config.model_turbo
+        model = get_settings().config.model_watsonx_llama3
     else:
-        model = get_settings().config.model
+        # FIXME: Hardcode watsonx here
+        model = get_settings().config.model_watsonx_llama3
     fallback_models = get_settings().config.fallback_models
     if not isinstance(fallback_models, list):
         fallback_models = [m.strip() for m in fallback_models.split(",")]

@@ -71,7 +71,9 @@ class PRUpdateChangelog:
         if get_settings().config.publish_output:
             self.git_provider.publish_comment("Preparing changelog updates...", is_temporary=True)
 
-        await retry_with_fallback_models(self._prepare_prediction, model_type=ModelType.TURBO)
+        # await retry_with_fallback_models(self._prepare_prediction, model_type=ModelType.TURBO)
+        # FIXME
+        await retry_with_fallback_models(self._prepare_prediction, model_type=ModelType.REGULAR)
 
         new_file_content, answer = self._prepare_changelog_update()
 
