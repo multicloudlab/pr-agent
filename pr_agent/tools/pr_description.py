@@ -87,7 +87,9 @@ class PRDescription:
             if get_settings().config.publish_output and not get_settings().config.get('is_auto_command', False):
                 self.git_provider.publish_comment("Preparing PR description...", is_temporary=True)
 
-            await retry_with_fallback_models(self._prepare_prediction, ModelType.TURBO)
+            # await retry_with_fallback_models(self._prepare_prediction, ModelType.TURBO)
+            # FIXME: Hardcode watsonx
+            await retry_with_fallback_models(self._prepare_prediction, ModelType.REGULAR)
 
             if self.prediction:
                 self._prepare_data()

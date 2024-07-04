@@ -63,7 +63,9 @@ class PRQuestions:
         if img_path:
             get_logger().debug(f"Image path identified", artifact=img_path)
 
-        await retry_with_fallback_models(self._prepare_prediction, model_type=ModelType.TURBO)
+        # await retry_with_fallback_models(self._prepare_prediction, model_type=ModelType.TURBO)
+        # FIXME
+        await retry_with_fallback_models(self._prepare_prediction, model_type=ModelType.REGULAR)
 
         pr_comment = self._prepare_pr_answer()
         get_logger().debug(f"PR output", artifact=pr_comment)
